@@ -2,6 +2,3 @@
 packages/
 AnalysisReport.sarif
 upgrade-assistant.clef
-
-WindowsFormsApp_WebView2_test/bin/
-WindowsFormsApp_WebView2_test/obj/
