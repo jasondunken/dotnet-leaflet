@@ -59,7 +59,7 @@
                 "https://watersgeo.epa.gov/arcgis/rest/services/NHDPlus_NP21/NHDSnapshot_NP21/MapServer/0";
 
             // build base map layer
-            let map = L.map("map").setView(
+            const map = L.map("map").setView(
                 [DEFAULT_LAT, DEFAULT_LNG],
                 DEFAULT_ZOOM
             );
@@ -69,7 +69,7 @@
             }).addTo(map);
 
             // build map layers
-            let catchments_layer = L.esri
+            const catchments_layer = L.esri
                 .featureLayer({
                     url: URL_NP21_CATCHMENTS,
                 })
@@ -79,7 +79,7 @@
                 fillOpacity: 0,
             });
 
-            let boundaries_layer = L.esri
+            const boundaries_layer = L.esri
                 .featureLayer({
                     url: URL_NP21_HUC8,
                 })
@@ -89,7 +89,7 @@
                 fillOpacity: 0,
             });
 
-            let flowlines_layer = L.esri
+            const flowlines_layer = L.esri
                 .featureLayer({
                     url: URL_NP21_FLOWLINES,
                 })
@@ -100,12 +100,12 @@
                 Catchments: catchments_layer,
                 "Flow Lines": flowlines_layer,
             };
-            layer_options = L.control.layers(null, overlayMaps);
+            const layer_options = L.control.layers(null, overlayMaps);
             layer_options.addTo(map);
 
             // app interaction
             function handleMapClick(e) {
-                let latlng = e.latlng;
+                const latlng = e.latlng;
                 sendMessageToDotnet(
                     `sent from map click lat: ${latlng.lat}, lng: ${latlng.lng}`
                 );
