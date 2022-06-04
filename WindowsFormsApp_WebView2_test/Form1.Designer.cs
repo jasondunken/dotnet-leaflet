@@ -38,38 +38,42 @@
             // 
             this.webView.CreationProperties = null;
             this.webView.DefaultBackgroundColor = System.Drawing.Color.White;
-            this.webView.Location = new System.Drawing.Point(0, 40);
+            this.webView.Location = new System.Drawing.Point(0, 46);
+            this.webView.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.webView.Name = "webView";
-            this.webView.Size = new System.Drawing.Size(800, 410);
+            this.webView.Size = new System.Drawing.Size(933, 473);
             this.webView.Source = new System.Uri("http://www.bitbytebytes.io", System.UriKind.Absolute);
             this.webView.TabIndex = 0;
             this.webView.ZoomFactor = 1D;
             // 
             // addressbar
             // 
-            this.addressbar.Location = new System.Drawing.Point(0, 14);
+            this.addressbar.Location = new System.Drawing.Point(0, 16);
+            this.addressbar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.addressbar.Name = "addressbar";
-            this.addressbar.Size = new System.Drawing.Size(707, 20);
+            this.addressbar.Size = new System.Drawing.Size(824, 23);
             this.addressbar.TabIndex = 1;
             // 
             // goButton
             // 
-            this.goButton.Location = new System.Drawing.Point(707, 12);
+            this.goButton.Location = new System.Drawing.Point(825, 14);
+            this.goButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.goButton.Name = "goButton";
-            this.goButton.Size = new System.Drawing.Size(93, 23);
+            this.goButton.Size = new System.Drawing.Size(108, 27);
             this.goButton.TabIndex = 2;
-            this.goButton.Text = "Go!";
-            this.goButton.Click += new System.EventHandler(this.goButton_Click);
+            this.goButton.Text = "Send Message\r\n";
             this.goButton.UseVisualStyleBackColor = true;
+            this.goButton.Click += new System.EventHandler(this.goButton_Click);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(933, 519);
             this.Controls.Add(this.goButton);
             this.Controls.Add(this.addressbar);
             this.Controls.Add(this.webView);
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "Form1";
             this.Text = "Frame Title";
             ((System.ComponentModel.ISupportInitialize)(this.webView)).EndInit();
