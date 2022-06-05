@@ -4,8 +4,13 @@
     border: 2px solid;
 }
 
-#form {
-    height: 85px;
-    background-color: grey;
-    border: 2px solid;
+.messages {
+    margin-top: 0.5rem;
+    display: grid;
+    grid-gap: 0.5rem;
+    grid-template-columns: auto 1fr;
+}
+
+#message-bar {
+    border: 1px solid gray;
 }

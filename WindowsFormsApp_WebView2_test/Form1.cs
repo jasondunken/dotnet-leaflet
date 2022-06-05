@@ -12,9 +12,9 @@ namespace WindowsFormsApp_WebView2_test
             InitializeComponent();
             this.Resize += new System.EventHandler(this.Form_Resize);
             webView.Size = this.ClientSize - new System.Drawing.Size(webView.Location);
-            goButton.Left = webView.Size.Width - goButton.Width;
-            addressbar.Width = goButton.Left;
-            addressbar.Left = 0;
+            goButton.Left = webView.Size.Width - goButton.Width - 8;
+            addressbar.Width = goButton.Left - 16;
+            addressbar.Left = 8;
             webView.Source = new Uri(Path.Combine(Environment.CurrentDirectory, @"html\leafletTest.html"));
             InitializeAsync();
         }

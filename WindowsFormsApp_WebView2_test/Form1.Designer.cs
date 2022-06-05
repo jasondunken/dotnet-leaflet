@@ -42,7 +42,6 @@
             this.webView.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.webView.Name = "webView";
             this.webView.Size = new System.Drawing.Size(933, 473);
-            this.webView.Source = new System.Uri("http://www.bitbytebytes.io", System.UriKind.Absolute);
             this.webView.TabIndex = 0;
             this.webView.ZoomFactor = 1D;
             // 

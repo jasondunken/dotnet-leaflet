@@ -33,14 +33,15 @@
         <div id="map_container">
             <div id="map"></div>
         </div>
-        <div>
+        <div class="messages">
             <button
                 type="button"
                 style="display: flex; align-items: center"
-                onClick="sendMessageToDotnet('sent from js button');"
+                onClick="sendMessageToDotnet('Message from js button');"
             >
                 send message
             </button>
+            <div id="message-bar"></div>
         </div>
 
         <script>
@@ -107,7 +108,7 @@
             function handleMapClick(e) {
                 const latlng = e.latlng;
                 sendMessageToDotnet(
-                    `sent from map click lat: ${latlng.lat}, lng: ${latlng.lng}`
+                    `Message from map click lat: ${latlng.lat}, lng: ${latlng.lng}`
                 );
             }
             map.on("click", handleMapClick);
@@ -115,6 +116,8 @@
             // dotnet <=> js message handlers
             window.chrome.webview.addEventListener("message", (event) => {
                 console.log(`message from dotnet: ${event.data}`);
+                this.document.getElementById("message-bar").innerHTML =
+                    event.data;
             });
 
             function sendMessageToDotnet(message) {
