@@ -35,11 +35,11 @@ namespace WindowsFormsApp_WebView2_test
             webView.Reload(); 
         }
 
-        private async void goButton_Click(object sender, EventArgs e)
+        private async void SendMessage(object sender, EventArgs e)
         {
             if (webView != null && webView.CoreWebView2 != null)
             {
-                webView.CoreWebView2.PostWebMessageAsString("Message from Dotnet");
+                webView.CoreWebView2.PostWebMessageAsString("Message from Dotnet buttton");
             }
         }
 

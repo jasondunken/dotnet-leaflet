@@ -62,7 +62,7 @@
             this.goButton.TabIndex = 2;
             this.goButton.Text = "Send Message\r\n";
             this.goButton.UseVisualStyleBackColor = true;
-            this.goButton.Click += new System.EventHandler(this.goButton_Click);
+            this.goButton.Click += new System.EventHandler(this.SendMessage);
             // 
             // Form1
             // 
