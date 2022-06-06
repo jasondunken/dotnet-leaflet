@@ -10,7 +10,7 @@ namespace WindowsFormsApp_WebView2_test
         public Form1()
         {
             InitializeComponent();
-            this.Resize += new System.EventHandler(this.Form_Resize);
+            this.Resize += new System.EventHandler(this.FormResize);
             webView.Size = this.ClientSize - new System.Drawing.Size(webView.Location);
             goButton.Left = webView.Size.Width - goButton.Width - 8;
             addressbar.Width = goButton.Left - 16;
@@ -25,7 +25,7 @@ namespace WindowsFormsApp_WebView2_test
             webView.CoreWebView2.WebMessageReceived += MessageReceived;
         }
 
-        private void Form_Resize(object sender, EventArgs e)
+        private void FormResize(object sender, EventArgs e)
         {
             webView.Size = this.ClientSize - new System.Drawing.Size(webView.Location);
             goButton.Left = webView.Size.Width - goButton.Width;
