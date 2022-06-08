@@ -34,6 +34,7 @@
             <div id="map"></div>
         </div>
         <div class="messages">
+            <div id="message-bar"></div>
             <button
                 type="button"
                 style="display: flex; align-items: center"
@@ -41,7 +42,6 @@
             >
                 send message
             </button>
-            <div id="message-bar"></div>
         </div>
 
         <script>
@@ -60,58 +60,58 @@
                 "https://watersgeo.epa.gov/arcgis/rest/services/NHDPlus_NP21/NHDSnapshot_NP21/MapServer/0";
 
             // build base map layer
-            const map = L.map("map").setView(
+            const MAP = L.map("map").setView(
                 [DEFAULT_LAT, DEFAULT_LNG],
                 DEFAULT_ZOOM
             );
             L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
                 attribution:
                     'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-            }).addTo(map);
+            }).addTo(MAP);
 
             // build map layers
-            const catchments_layer = L.esri
+            const CATCHMENTS_LAYER = L.esri
                 .featureLayer({
                     url: URL_NP21_CATCHMENTS,
                 })
-                .addTo(map);
-            catchments_layer.setStyle({
+                .addTo(MAP);
+            CATCHMENTS_LAYER.setStyle({
                 color: "orange",
                 fillOpacity: 0,
             });
 
-            const boundaries_layer = L.esri
+            const BOUNDARIES_LAYER = L.esri
                 .featureLayer({
                     url: URL_NP21_HUC8,
                 })
-                .addTo(map);
-            boundaries_layer.setStyle({
+                .addTo(MAP);
+            BOUNDARIES_LAYER.setStyle({
                 color: "red",
                 fillOpacity: 0,
             });
 
-            const flowlines_layer = L.esri
+            const FLOWLINES_LAYER = L.esri
                 .featureLayer({
                     url: URL_NP21_FLOWLINES,
                 })
-                .addTo(map);
+                .addTo(MAP);
 
-            const overlayMaps = {
-                "HUC8 Boundaries": boundaries_layer,
-                Catchments: catchments_layer,
-                "Flow Lines": flowlines_layer,
+            const OVERLAY_MAPS = {
+                "HUC8 Boundaries": BOUNDARIES_LAYER,
+                Catchments: CATCHMENTS_LAYER,
+                "Flow Lines": FLOWLINES_LAYER,
             };
-            const layer_options = L.control.layers(null, overlayMaps);
-            layer_options.addTo(map);
+            const LAYER_OPTIONS = L.control.layers(null, OVERLAY_MAPS);
+            LAYER_OPTIONS.addTo(MAP);
 
             // app interaction
             function handleMapClick(e) {
-                const latlng = e.latlng;
+                const LAT_LNG = e.latlng;
                 sendMessageToDotnet(
-                    `Message from map click lat: ${latlng.lat}, lng: ${latlng.lng}`
+                    `Message from map click lat: ${LAT_LNG.lat}, lng: ${LAT_LNG.lng}`
                 );
             }
-            map.on("click", handleMapClick);
+            MAP.on("click", handleMapClick);
 
             // dotnet <=> js message handlers
             window.chrome.webview.addEventListener("message", (event) => {

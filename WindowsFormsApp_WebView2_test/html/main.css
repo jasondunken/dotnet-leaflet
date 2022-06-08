@@ -1,4 +1,8 @@
-﻿#map {
+﻿body {
+    background-color: aqua;
+}
+
+#map {
     height: 420px;
     background-color: grey;
     border: 2px solid;
@@ -8,9 +12,10 @@
     margin-top: 0.5rem;
     display: grid;
     grid-gap: 0.5rem;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: 1fr auto;
 }
 
 #message-bar {
     border: 1px solid gray;
+    background-color: white;
 }
