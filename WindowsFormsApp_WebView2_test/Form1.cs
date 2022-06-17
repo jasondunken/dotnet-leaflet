@@ -35,6 +35,8 @@ namespace WindowsFormsApp_WebView2_test
             webView.Reload(); 
         }
 
+
+        // dotnet <=> js
         private async void SendMessage(object sender, EventArgs e)
         {
             if (webView != null && webView.CoreWebView2 != null)

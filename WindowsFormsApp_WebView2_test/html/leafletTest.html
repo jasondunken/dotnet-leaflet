@@ -114,12 +114,16 @@
             MAP.on("click", handleMapClick);
 
             // dotnet <=> js message handlers
+            // receive message dotnet
             window.chrome.webview.addEventListener("message", (event) => {
-                console.log(`message from dotnet: ${event.data}`);
-                this.document.getElementById("message-bar").innerHTML =
-                    event.data;
+                console.log(`"message" event received from dotnet: `, event);
+                const message = event.data;
+                if (typeof message === "string")
+                    this.document.getElementById("message-bar").innerHTML =
+                        event.data;
             });
 
+            // send message to dotnet
             function sendMessageToDotnet(message) {
                 window.chrome.webview.postMessage(message);
             }
