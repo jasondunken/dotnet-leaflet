@@ -12,7 +12,7 @@
     margin-top: 0.5rem;
     display: grid;
     grid-gap: 0.5rem;
-    grid-template-columns: 1fr auto;
+    grid-template-columns: 1fr auto auto;
 }
 
 #message-bar {

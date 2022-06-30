@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using System.IO;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using Microsoft.Web.WebView2.Core;
 
 namespace WindowsFormsApp_WebView2_test
@@ -32,7 +35,7 @@ namespace WindowsFormsApp_WebView2_test
             addressbar.Width = goButton.Left;
             addressbar.Left = 0;
 
-            webView.Reload(); 
+            webView.Reload();
         }
 
 
@@ -45,10 +48,67 @@ namespace WindowsFormsApp_WebView2_test
             }
         }
 
+        private async void SendSerializedObject(object sender, EventArgs e)
+        {
+            if (webView != null && webView.CoreWebView2 != null)
+            {
+                webView.CoreWebView2.PostWebMessageAsString("Message from Dotnet buttton");
+            }
+        }
+
         void MessageReceived(object sender, CoreWebView2WebMessageReceivedEventArgs args)
         {
-            String content = args.TryGetWebMessageAsString();
-            addressbar.Text = content;
+            try
+            {
+                MapMessage mapMessage = JsonSerializer.Deserialize<MapMessage>(args.WebMessageAsJson);
+
+                if (mapMessage.action == "map-click")
+                {
+                    var mapClick = mapMessage.data;
+                    addressbar.Text = $"map clicked @ lat:{mapClick.latlng.lat}, lng:{mapClick.latlng.lng}";
+                }
+                if (mapMessage.action == "js-button-clicked")
+                {
+                    addressbar.Text = $"js button clicked {mapMessage.data}";
+                }
+
+            }
+            // if it's not a valid JSON, it's probably a string
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine("{0} deserialize exception thrown", e);
+                var message = args.TryGetWebMessageAsString();
+                if (string.IsNullOrEmpty(message))
+                    return;
+                addressbar.Text = message;
+            }
         }
+    }
+
+    public class MapMessage
+    {
+        public string action { get; set; }
+        public MapEvent data { get; set; }
+
+    }
+
+    public class MapEvent
+    {
+        public string type { get; set; }
+        public LatLng latlng { get; set; }
+        public LayerPos layerPoint { get; set; }
+        public LayerPos containerPoint { get; set; }
+    }
+
+    public class LatLng
+    {
+        public float lat { get; set; }
+        public float lng { get; set; }
+    }
+
+    public class LayerPos
+    {
+        public float x { get; set; }
+        public float y { get; set; }
     }
 }
